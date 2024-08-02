@@ -21,8 +21,26 @@ let NotaService = class NotaService {
     constructor(notaRepository) {
         this.notaRepository = notaRepository;
     }
-    findAll() {
+    async findAll() {
         return this.notaRepository.find();
+    }
+    async create(createNotaDto) {
+        const newNota = this.notaRepository.create(createNotaDto);
+        return this.notaRepository.save(newNota);
+    }
+    async update(id, updateNotaDto) {
+        const nota = await this.notaRepository.findOneBy({ id });
+        if (!nota) {
+            throw new common_1.NotFoundException(`No se encontro la id: ${id}`);
+        }
+        Object.assign(nota, updateNotaDto);
+        return this.notaRepository.save(nota);
+    }
+    async remove(id) {
+        const result = await this.notaRepository.delete(id);
+        if (result.affected === 0) {
+            throw new common_1.NotFoundException(`No se encontro la id: ${id}`);
+        }
     }
 };
 exports.NotaService = NotaService;
