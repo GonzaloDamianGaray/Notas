@@ -23,6 +23,9 @@ let NotaController = class NotaController {
     async findAll() {
         return this.notaService.findAll();
     }
+    async findOne(id) {
+        return this.notaService.findOneById(id);
+    }
     async create(createNotaDto) {
         return this.notaService.create(createNotaDto);
     }
@@ -40,6 +43,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], NotaController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], NotaController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),

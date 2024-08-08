@@ -13,6 +13,12 @@ export class NotaController {
     return this.notaService.findAll();
   }
 
+  @Get(':id')
+  async findOne(@Param('id')id: number): Promise<Notas>{
+    return this.notaService.findOneById(id);
+  }
+
+
   @Post()
   async create(@Body() createNotaDto: CreateNotaDto): Promise<Notas> {
     return this.notaService.create(createNotaDto);

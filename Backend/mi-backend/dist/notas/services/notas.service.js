@@ -24,6 +24,13 @@ let NotaService = class NotaService {
     async findAll() {
         return this.notaRepository.find();
     }
+    async findOneById(id) {
+        const nota = await this.notaRepository.findOneBy({ id });
+        if (!nota) {
+            throw new common_1.NotFoundException(`Nota con ID ${id} no encontrada`);
+        }
+        return nota;
+    }
     async create(createNotaDto) {
         const newNota = this.notaRepository.create(createNotaDto);
         return this.notaRepository.save(newNota);

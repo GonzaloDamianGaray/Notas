@@ -5,6 +5,7 @@ export declare class NotaController {
     private readonly notaService;
     constructor(notaService: NotaService);
     findAll(): Promise<Notas[]>;
+    findOne(id: number): Promise<Notas>;
     create(createNotaDto: CreateNotaDto): Promise<Notas>;
     update(id: number, updateNotaDto: CreateNotaDto): Promise<Notas>;
     remove(id: number): Promise<void>;

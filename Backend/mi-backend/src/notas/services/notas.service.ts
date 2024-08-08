@@ -18,6 +18,17 @@ export class NotaService {
     return this.notaRepository.find();
   }
 
+      // Método para obtener una nota por ID
+  async findOneById(id: number): Promise<Notas> {
+    const nota = await this.notaRepository.findOneBy({ id });
+    if (!nota) {
+      throw new NotFoundException(`Nota con ID ${id} no encontrada`);
+    }
+    return nota;
+  }
+
+
+
      /* crea nota*/ 
 
   async create(createNotaDto: CreateNotaDto): Promise<Notas> {
